@@ -8,16 +8,16 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.michael.wallpaper.AppConfig;
+import android.widget.RelativeLayout;
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+import com.google.ads.AdView;
 import com.michael.wallpaper.R;
 import com.michael.wallpaper.dao.model.Series;
 import com.michael.wallpaper.fragment.NavigationDrawerFragment;
 import com.michael.wallpaper.fragment.PhotoStreamFragment;
 import com.michael.wallpaper.helper.SeriesHelper;
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.fb.FeedbackAgent;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends BaseActivity
@@ -53,15 +53,23 @@ public class MainActivity extends BaseActivity
         mTitle = getTitle();
 
         // Set up the drawer.
-        mNavigationDrawerFragment.setUp(
-                                           R.id.navigation_drawer,
+        mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
                                            (DrawerLayout) findViewById(R.id.drawer_layout));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (interstitial.isReady()) {
+            interstitial.show();
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MobclickAgent.flush(getApplication());
+//        MobclickAgent.flush(getApplication());
     }
 
     @Override
@@ -118,41 +126,25 @@ public class MainActivity extends BaseActivity
             startActivity(new Intent(this, SettingActivity.class));
             return true;
         } else if (item.getItemId() == R.id.action_feedback) {
-            FeedbackAgent agent = new FeedbackAgent(this);
-            agent.startFeedbackActivity();
+//            FeedbackAgent agent = new FeedbackAgent(this);
+//            agent.startFeedbackActivity();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void initBannerAd() {
-//        RelativeLayout l = (RelativeLayout) findViewById(R.id.ad_content);
-//        AdView adv = new AdView(this, AdSize.BANNER, AppConfig.GDT_AD_APPID, AppConfig.GDT_AD_BANNER_POSID);
-//        l.addView(adv);
-//        AdRequest adr = new AdRequest();
-//        adr.setTestAd(AppConfig.DEBUG);
-//        adr.setRefresh(31);
-//        adv.fetchAd(adr);
+        mAdView = new AdView(this, AdSize.BANNER, "a15368dc3248e7e");
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.ad_content);
+        // Add the adView to it
+        layout.addView(mAdView, new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                                                                   RelativeLayout.LayoutParams.WRAP_CONTENT));
+        // Initiate a generic request to load it with an ad
+        mAdView.loadAd(new AdRequest());
     }
 
     private void initInterstitialAd() {
-//        iad = new InterstitialAd(this, AppConfig.GDT_AD_APPID, AppConfig.GDT_AD_INTERSTITIAL_POSID);
-//        iad.setAdListener(new InterstitialAdListener() {
-//            @Override
-//            public void onFail() {
-//
-//            }
-//
-//            @Override
-//            public void onBack() {
-//
-//            }
-//
-//            @Override
-//            public void onAdReceive() {
-//                iad.show();
-//            }
-//        });
+        initSplashAd();
     }
 
     private void initAppWall() {
@@ -162,18 +154,18 @@ public class MainActivity extends BaseActivity
     public void onRefresh() {
         mRefreshTime += 1;
         if (mRefreshTime % 5 == 0) {
-//            if (iad != null) {
-//                iad.loadAd();
-//            }
+            if (interstitial.isReady()) {
+                interstitial.show();
+            }
         }
 
-        if (mSeries != null) {
-            HashMap<String, String> map = new HashMap<String, String>();
-            map.put("type", String.valueOf(mSeries.getType()));
-            map.put("title", mSeries.getTitle());
-            map.put("mode", String.valueOf(AppConfig.SERIES_MODE));
-            MobclickAgent.onEvent(this, "Refresh", map);
-        }
+//        if (mSeries != null) {
+//            HashMap<String, String> map = new HashMap<String, String>();
+//            map.put("type", String.valueOf(mSeries.getType()));
+//            map.put("title", mSeries.getTitle());
+//            map.put("mode", String.valueOf(AppConfig.SERIES_MODE));
+//            MobclickAgent.onEvent(this, "Refresh", map);
+//        }
     }
 
 }

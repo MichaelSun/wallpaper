@@ -15,14 +15,17 @@ import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 import android.widget.ShareActionProvider;
 import android.widget.TextView;
+import com.google.ads.AdRequest;
+import com.google.ads.AdSize;
+import com.google.ads.AdView;
 import com.jesson.android.widget.Toaster;
 import com.michael.wallpaper.R;
 import com.michael.wallpaper.adapter.GalleryAdapter;
 import com.michael.wallpaper.helper.CollectHelper;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.umeng.analytics.MobclickAgent;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -67,22 +70,22 @@ public class GalleryActivity extends BaseActivity {
                 case WHAT_SAVE_SUCCESS:
                     Toaster.show(GalleryActivity.this, R.string.save_gallery_success);
                     map.put("ifSuccess", "success");
-                    MobclickAgent.onEvent(GalleryActivity.this, "SaveGallery", map);
+//                    MobclickAgent.onEvent(GalleryActivity.this, "SaveGallery", map);
                     break;
                 case WHAT_SAVE_FAIL:
                     Toaster.show(GalleryActivity.this, R.string.save_gallery_fail);
                     map.put("ifSuccess", "fail");
-                    MobclickAgent.onEvent(GalleryActivity.this, "SaveGallery", map);
+//                    MobclickAgent.onEvent(GalleryActivity.this, "SaveGallery", map);
                     break;
                 case WHAT_WALLPAPER_SUCCESS:
                     Toaster.show(GalleryActivity.this, R.string.set_wallpaper_success);
                     map.put("ifSuccess", "success");
-                    MobclickAgent.onEvent(GalleryActivity.this, "Wallpaper", map);
+//                    MobclickAgent.onEvent(GalleryActivity.this, "Wallpaper", map);
                     break;
                 case WHAT_WALLPAPER_FAIL:
                     Toaster.show(GalleryActivity.this, R.string.set_wallpaper_success);
                     map.put("ifSuccess", "fail");
-                    MobclickAgent.onEvent(GalleryActivity.this, "Wallpaper", map);
+//                    MobclickAgent.onEvent(GalleryActivity.this, "Wallpaper", map);
                     break;
             }
         }
@@ -95,7 +98,7 @@ public class GalleryActivity extends BaseActivity {
         intent.putExtra(EXTRA_POSITION, position);
         context.startActivity(intent);
 
-        MobclickAgent.onEvent(context, "ViewLarge", title);
+//        MobclickAgent.onEvent(context, "ViewLarge", title);
     }
 
     @Override
@@ -182,13 +185,13 @@ public class GalleryActivity extends BaseActivity {
     }
 
     private void initBanner() {
-//        RelativeLayout l = (RelativeLayout) findViewById(R.id.ad_content);
-//        AdView adv = new AdView(this, AdSize.BANNER, AppConfig.GDT_AD_APPID, AppConfig.GDT_AD_BANNER_POSID);
-//        l.addView(adv);
-//        AdRequest adr = new AdRequest();
-//        adr.setTestAd(AppConfig.DEBUG);
-//        adr.setRefresh(31);
-//        adv.fetchAd(adr);
+        mAdView = new AdView(this, AdSize.BANNER, "a15368dc3248e7e");
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.ad_content);
+        // Add the adView to it
+        layout.addView(mAdView, new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                                                                          RelativeLayout.LayoutParams.WRAP_CONTENT));
+        // Initiate a generic request to load it with an ad
+        mAdView.loadAd(new AdRequest());
     }
 
     @Override
@@ -215,7 +218,7 @@ public class GalleryActivity extends BaseActivity {
         shareActionProvider.setOnShareTargetSelectedListener(new ShareActionProvider.OnShareTargetSelectedListener() {
             @Override
             public boolean onShareTargetSelected(ShareActionProvider shareActionProvider, Intent intent) {
-                MobclickAgent.onEvent(GalleryActivity.this, "Share", mTitle);
+//                MobclickAgent.onEvent(GalleryActivity.this, "Share", mTitle);
                 return true;
             }
         });
@@ -253,11 +256,11 @@ public class GalleryActivity extends BaseActivity {
             case R.id.action_collect: {
                 String url = getCurrentUrl();
                 if (mCollectHelper.isCollected(url)) {
-                    MobclickAgent.onEvent(GalleryActivity.this, "Collect", "collect");
+//                    MobclickAgent.onEvent(GalleryActivity.this, "Collect", "collect");
                     mCollectHelper.cancelCollectBelle(url);
                     Toaster.show(this, R.string.cancel_collect_success);
                 } else {
-                    MobclickAgent.onEvent(GalleryActivity.this, "Collect", "cancel collect");
+//                    MobclickAgent.onEvent(GalleryActivity.this, "Collect", "cancel collect");
                     mCollectHelper.collectBelle(url);
                     Toaster.show(this, R.string.collect_success);
                 }

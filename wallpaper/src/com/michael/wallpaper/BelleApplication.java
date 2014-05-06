@@ -10,13 +10,11 @@ import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import com.jesson.android.Jess;
 import com.jesson.android.internet.InternetUtils;
+import com.jesson.android.utils.DeviceInfo;
 import com.jesson.android.widget.Toaster;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.common.Res;
-import com.jesson.android.utils.DeviceInfo;
 
 /**
  * Created by zhangdi on 14-3-4.
@@ -33,10 +31,6 @@ public class BelleApplication extends Application {
         initSeriesModel();
 
         initImageLoader();
-
-        Res.setPackageName("com.jesson.belle");
-        MobclickAgent.setDebugMode(AppConfig.DEBUG);
-        MobclickAgent.flush(this);
 
         registerInternetError();
     }

@@ -109,10 +109,10 @@ public class SeriesHelper {
         List<Series> list = new ArrayList<Series>();
         Series collect = new Series(-1, "我的收藏");
         list.add(collect);
-        if (AppConfig.SERIES_MODE == 2) {
-            Series suggest = new Series(-2, "推荐应用");
-            list.add(suggest);
-        }
+//        if (AppConfig.SERIES_MODE == 2) {
+//            Series suggest = new Series(-2, "推荐应用");
+//            list.add(suggest);
+//        }
         return list;
     }
 
