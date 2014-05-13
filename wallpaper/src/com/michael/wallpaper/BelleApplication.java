@@ -12,6 +12,7 @@ import com.jesson.android.Jess;
 import com.jesson.android.internet.InternetUtils;
 import com.jesson.android.utils.DeviceInfo;
 import com.jesson.android.widget.Toaster;
+import com.michael.wallpaper.utils.AppRuntime;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -33,6 +34,8 @@ public class BelleApplication extends Application {
         initImageLoader();
 
         registerInternetError();
+
+        AppRuntime.updateStat(getApplicationContext());
     }
 
     private void initSeriesModel() {

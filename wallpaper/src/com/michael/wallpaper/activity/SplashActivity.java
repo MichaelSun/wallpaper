@@ -24,6 +24,7 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        initSplashAd();
 
         mStartTime = System.currentTimeMillis();
 

@@ -88,6 +88,10 @@ public class GalleryActivity extends BaseActivity {
 //                    MobclickAgent.onEvent(GalleryActivity.this, "Wallpaper", map);
                     break;
             }
+
+            if (interstitial.isReady()) {
+                interstitial.show();
+            }
         }
     };
 
@@ -105,6 +109,8 @@ public class GalleryActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_large);
+
+        this.initSplashAd();
 
         initBanner();
 
