@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/barcode_item"
+        android:background="@drawable/barcode_background_list_item_selector"
+        android:clickable="false"
+        android:layout_width="fill_parent"
+        android:layout_height="74.0dip"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/barcode_more"
+            android:clickable="false"
+            android:layout_width="45.0dip"
+            android:layout_height="45.0dip"
+            android:layout_marginLeft="2.0dip"
+            android:layout_marginRight="2.0dip"
+            android:src="@drawable/barcode_more"
+            android:scaleType="centerInside"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:id="@+id/barcode_type_content"
+            android:clickable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20.0dip"
+            android:layout_toLeftOf="@id/barcode_more"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:textSize="18.0dip"
+                android:textColor="#ff333333"
+                android:layout_gravity="left"
+                android:id="@+id/barcode_title"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textSize="14.0dip"
+                android:textColor="#ff666666"
+                android:ellipsize="end"
+                android:layout_gravity="left"
+                android:id="@+id/barcode_content"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/time_display_area"
+            android:clickable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12.0dip"
+            android:layout_marginRight="2.0dip"
+            android:layout_toLeftOf="@id/barcode_more"
+            android:layout_alignParentTop="true">
+
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:id="@+id/time_icon"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/barcode_scan_history_time"/>
+
+            <TextView
+                android:textSize="12.0dip"
+                android:textColor="#ffaaaaaa"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/time_interval"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2.0dip"
+                android:layout_marginBottom="0.5dip"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

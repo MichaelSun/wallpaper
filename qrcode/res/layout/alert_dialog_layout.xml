@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/btn_style_alert_dialog_cancel_normal"
+    >
+
+    <TextView
+        android:id="@+id/popup_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:paddingLeft="10dp"
+        android:gravity="left"
+        android:shadowColor="#000000"
+        android:shadowDx="1.2"
+        android:shadowDy="1.2"
+        android:shadowRadius="1"
+        android:singleLine="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/LargeTextSize"
+        android:layout_marginTop="8dp"
+        />
+
+    <TextView
+        android:id="@+id/popup_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:shadowDx="1.2"
+        android:shadowDy="1.2"
+        android:shadowRadius="1"
+        android:singleLine="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/LargeTextSize"
+        android:layout_marginTop="8dp"
+        />
+
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/popup_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="12dp"
+            android:textSize="@dimen/TitleTextSize"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_style_alert_dialog_cancel"
+            />
+
+        <TextView
+            android:id="@+id/popup_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="12dp"
+            android:textSize="@dimen/TitleTextSize"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_style_alert_dialog_cancel"
+            />
+
+
+        </LinearLayout>
+
+
+
+
+</LinearLayout>

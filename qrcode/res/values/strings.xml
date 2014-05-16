@@ -1,4 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">qrcode</string>
+    <string name="app_name">最强二维码</string>
+
+    <string name="scan_barcode_actionbar_title">最强二维码</string>
+    <string name="scan_barcode_hint">将二维码置于上图的框中进行扫描</string>
+    <string name="generate_face_barcode">做脸码</string>
+    <string name="empty_text">没有历史</string>
+    <string name="title_history">扫描历史</string>
+    <string name="scan_dialog_access">访问</string>
+    <string name="scan_dialog_cancel">取消</string>
+    <string name="scan_dialog_weixin">微信</string>
+    <string name="scan_dialog_access_url">访问链接</string>
+    <string name="scan_barcode_fail">二维码无法识别</string>
+    <string name="scan_torch_on">打开</string>
+    <string name="scan_torch_off">关闭</string>
+    <string name="image_crop_actionbar_title">裁剪</string>
+    <string name="image_not_support">不支持的图片格式</string>
+
+    <string-array name="generate_face_barcode_array">
+        <item>拍照</item>
+        <item>从相册选择</item>
+    </string-array>
+
+    <string-array name="generate_save_contact_array">
+        <item>创建新联系人</item>
+        <item>添加到现有联系人</item>
+    </string-array>
+
+    <string name="app_ok">确定</string>
+    <string name="app_save">保存</string>
+    <string name="app_cancel">取消</string>
+
 </resources>

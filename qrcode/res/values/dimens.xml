@@ -1,0 +1,64 @@
+<resources>
+    <!-- main page -->
+    <dimen name="main_page_broadcast_icon_gap">4dp</dimen>
+    <dimen name="main_page_broadcast_icon_left_right_gap">6dp</dimen>
+    <dimen name="main_page_chat_item_send_status_width">24dp</dimen>
+
+    <dimen name="chat_cover_corner">1dp</dimen>
+    <dimen name="chat_avatar_corner">1dp</dimen>
+    <dimen name="chat_small_avatar_corner">1dp</dimen>
+    
+    <dimen name="chat_input_normal_bottom_padding">8dp</dimen>
+    <dimen name="chat_input_max_bottom_padding">17dp</dimen>
+    
+    <dimen name="chat_image_min_width">89dp</dimen>
+    <dimen name="chat_image_max_width">298dp</dimen>
+    
+    <dimen name="chat_image_min_height">81dp</dimen>
+    <dimen name="chat_image_max_height">356dp</dimen>
+    
+    <dimen name="completeinfo_head_corner">1dp</dimen>
+    <dimen name="findfriends_gv_item_corner">1dp</dimen>
+    <dimen name="sayhi_item_iv_corner">1dp</dimen>
+    
+    <dimen name="contact_head_corner">1dp</dimen>
+    
+    <!-- tips -->
+    <dimen name="tips_text_size">18sp</dimen>
+    
+    <!-- invite friend padding -->
+    <dimen name="invite_friend_header_padding">5dp</dimen>
+    
+    <!-- profile headerview height -->
+    <dimen name="profile_headerview_height">285dp</dimen>
+    
+	<!-- findfriends head width -->
+	<dimen name="findfriends_head_width">82dp</dimen>
+
+    <dimen name="scan_border_width">250dp</dimen>
+    <dimen name="scan_border_height">250dp</dimen>
+
+    <dimen name="setting_text_size">17sp</dimen>
+
+    <dimen name="complete_info_text_size">14sp</dimen>
+    <dimen name="complete_info_left_margin">8dp</dimen>
+
+    <!-- 模板适配 -->
+    <dimen name="template_default_corp_margin_left">10dp</dimen>
+    <dimen name="template_default_corp_max_width">198dp</dimen>
+    <dimen name="template_default_email_max_width">174dp</dimen>
+    <dimen name="template1_position_max_width">223dp</dimen>
+    <dimen name="template1_corp_max_width">185dp</dimen>
+    <dimen name="template1_email_max_width">160dp</dimen>
+    <dimen name="template4_name_max_width">164dp</dimen>
+    <dimen name="template4_corp_margin_left">18dp</dimen>
+    <dimen name="template4_corp_max_width">165dp</dimen>
+    <dimen name="template4_email_max_width">145dp</dimen>
+    <dimen name="template5_avatar_margin_left">21dp</dimen>
+    <dimen name="template5_avatar_margin_top">44dp</dimen>
+    <dimen name="template5_border_margin_left">20dp</dimen>
+    <dimen name="template5_border_margin_top">43dp</dimen>
+    <dimen name="template5_position_margin_left">17dp</dimen>
+    <dimen name="template5_position_max_width">174dp</dimen>
+    <dimen name="template5_email_max_width">148dp</dimen>
+</resources>
