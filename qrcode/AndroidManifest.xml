@@ -6,10 +6,12 @@
 
     <uses-sdk android:minSdkVersion="14"/>
 
-    <uses-feature android:name="android.hardware.camera"
-                  android:required="false"/>
-    <uses-feature android:name="android:hardware.camera.autofocus"
-                  android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false"/>
+    <uses-feature
+        android:name="android:hardware.camera.autofocus"
+        android:required="false"/>
 
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -33,12 +35,17 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ScanHistoryActivity"
-                  android:theme="@style/AppTheme"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.ScanHistoryActivity"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.ImageCropActivity"
             android:label="@string/image_crop_actionbar_title"
             android:screenOrientation="portrait"/>
+
+        <activity
+            android:name="com.google.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
     </application>
 </manifest>

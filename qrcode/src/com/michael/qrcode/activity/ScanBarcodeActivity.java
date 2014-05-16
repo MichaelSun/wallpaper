@@ -166,6 +166,9 @@ public class ScanBarcodeActivity extends BaseActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_barcode);
 
+        initBannerAd();
+        initSplashAd();
+
         if (getIntent() != null) {
             mScanMode = ScanMode.values()[getIntent().getIntExtra(EXTRA_SCAN_MODEL_INT, 0)];
         }
@@ -234,6 +237,10 @@ public class ScanBarcodeActivity extends BaseActivity implements View.OnClickLis
         }, 220);
 
         super.onResume();
+
+        if (interstitial.isReady()) {
+            interstitial.show();
+        }
     }
 
     /**

@@ -44,12 +44,24 @@ public class ScanHistoryActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.barcode_history);
 
+        initBannerAd();
+        initSplashAd();
+
         enableHomeButton(getString(R.string.title_history));
 
         mScanHistoryHelper = new ScanHistoryHelper(getApplicationContext());
         initUI();
 
         loadScanHistory(null);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (interstitial.isReady()) {
+            interstitial.show();
+        }
     }
 
     private void initUI() {

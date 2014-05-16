@@ -131,6 +131,7 @@
     </RelativeLayout>
 
     <LinearLayout
+            android:id="@+id/bottom"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_alignParentBottom="true"
@@ -236,6 +237,12 @@
         <!--</LinearLayout>-->
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/ad_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom"/>
 
     <View
             android:id="@+id/mask"
