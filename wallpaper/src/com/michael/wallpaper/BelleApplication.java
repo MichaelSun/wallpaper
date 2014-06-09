@@ -16,6 +16,7 @@ import com.michael.wallpaper.utils.AppRuntime;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import net.youmi.android.AdManager;
 
 /**
  * Created by zhangdi on 14-3-4.
@@ -36,6 +37,11 @@ public class BelleApplication extends Application {
         registerInternetError();
 
         AppRuntime.updateStat(getApplicationContext());
+        initYoumi();
+    }
+
+    private void initYoumi() {
+        AdManager.getInstance(getApplicationContext()).init("6142d65763827912", "b398417544f954ee", false);
     }
 
     private void initSeriesModel() {

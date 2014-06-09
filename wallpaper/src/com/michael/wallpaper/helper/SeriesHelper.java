@@ -102,6 +102,7 @@ public class SeriesHelper {
             Series series1 = new Series(1, "性感美女");
             list.add(series1);
         }
+
         return list;
     }
 
@@ -113,6 +114,10 @@ public class SeriesHelper {
 //            Series suggest = new Series(-2, "推荐应用");
 //            list.add(suggest);
 //        }
+
+        Series seriesApp = new Series(-2, "更多应用");
+        list.add(seriesApp);
+
         return list;
     }
 

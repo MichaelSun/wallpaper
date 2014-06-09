@@ -21,7 +21,7 @@ public class AppRuntime {
                 public void run() {
                     try {
                         StatRequest request = new StatRequest("百度",
-                                                                 "美女壁纸",
+                                                                 "5",
                                                                  UtilsRuntime.getVersionName(context),
                                                                  "android",
                                                                  UtilsRuntime.getIMEI(context),

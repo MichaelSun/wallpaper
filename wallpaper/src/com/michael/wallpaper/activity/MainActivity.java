@@ -17,6 +17,7 @@ import com.michael.wallpaper.dao.model.Series;
 import com.michael.wallpaper.fragment.NavigationDrawerFragment;
 import com.michael.wallpaper.fragment.PhotoStreamFragment;
 import com.michael.wallpaper.helper.SeriesHelper;
+import net.youmi.android.offers.OffersManager;
 
 import java.util.List;
 
@@ -53,8 +54,9 @@ public class MainActivity extends BaseActivity
         mTitle = getTitle();
 
         // Set up the drawer.
-        mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
-                                           (DrawerLayout) findViewById(R.id.drawer_layout));
+        mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+
+        OffersManager.getInstance(getApplicationContext()).onAppLaunch();
     }
 
     @Override
@@ -70,6 +72,8 @@ public class MainActivity extends BaseActivity
     protected void onDestroy() {
         super.onDestroy();
 //        MobclickAgent.flush(getApplication());
+
+        OffersManager.getInstance(getApplicationContext()).onAppExit();
     }
 
     @Override
@@ -80,7 +84,7 @@ public class MainActivity extends BaseActivity
         }
         mSeries = seriesList.get(position);
         if (mSeries.getType() == -2) {
-//            GdtAppwall.showAppwall();
+            OffersManager.getInstance(this).showOffersWall();
         } else {
             // update the main content by replacing fragments
             FragmentManager fragmentManager = getFragmentManager();
