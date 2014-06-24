@@ -1,23 +1,31 @@
 package com.michael.wallpaper.activity;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import com.google.ads.AdRequest;
 import com.google.ads.AdSize;
 import com.google.ads.AdView;
+import com.jesson.android.widget.Toaster;
+import com.michael.wallpaper.AppConfig;
 import com.michael.wallpaper.R;
 import com.michael.wallpaper.dao.model.Series;
 import com.michael.wallpaper.fragment.NavigationDrawerFragment;
 import com.michael.wallpaper.fragment.PhotoStreamFragment;
 import com.michael.wallpaper.helper.SeriesHelper;
+import com.michael.wallpaper.setting.Setting;
 import net.youmi.android.offers.OffersManager;
+import net.youmi.android.offers.PointsManager;
 
 import java.util.List;
 
@@ -83,8 +91,19 @@ public class MainActivity extends BaseActivity
             return;
         }
         mSeries = seriesList.get(position);
-        if (mSeries.getType() == -2) {
+        if (mSeries.getType() == -3) {
             OffersManager.getInstance(this).showOffersWall();
+        } else if (mSeries.getType() == -2) {
+            if (Setting.getInstace().getMode() != AppConfig.SERIES_MODE) {
+                return;
+            }
+            int point = PointsManager.getInstance(this).queryPoints();
+            if (point < 60) {
+                showWallInfoDialog(point);
+            } else {
+                Setting.getInstace().setMode(1);
+                Toaster.show(getApplicationContext(), "开启隐藏成功，请退出应用重新进入");
+            }
         } else {
             // update the main content by replacing fragments
             FragmentManager fragmentManager = getFragmentManager();
@@ -170,6 +189,29 @@ public class MainActivity extends BaseActivity
 //            map.put("mode", String.valueOf(AppConfig.SERIES_MODE));
 //            MobclickAgent.onEvent(this, "Refresh", map);
 //        }
+    }
+
+    private void showWallInfoDialog(int currentUserPoint) {
+        String tips = String.format(getString(R.string.offer_info_detail), 60, currentUserPoint);
+        View view = this.getLayoutInflater().inflate(R.layout.offer_tips_view, null);
+        TextView tv = (TextView) view.findViewById(R.id.tips);
+        tv.setText(tips);
+        AlertDialog dialog = new AlertDialog.Builder(this).setTitle(R.string.tips_title).setView(view)
+                                 .setPositiveButton(R.string.download_offer, new DialogInterface.OnClickListener() {
+
+                                     @Override
+                                     public void onClick(DialogInterface dialog, int which) {
+                                         OffersManager.getInstance(MainActivity.this).showOffersWall();
+                                     }
+                                 })
+                                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+
+                                     @Override
+                                     public void onClick(DialogInterface dialog, int which) {
+                                     }
+                                 }).create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
     }
 
 }

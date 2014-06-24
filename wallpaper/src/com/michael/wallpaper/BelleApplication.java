@@ -12,6 +12,7 @@ import com.jesson.android.Jess;
 import com.jesson.android.internet.InternetUtils;
 import com.jesson.android.utils.DeviceInfo;
 import com.jesson.android.widget.Toaster;
+import com.michael.wallpaper.setting.Setting;
 import com.michael.wallpaper.utils.AppRuntime;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -38,6 +39,8 @@ public class BelleApplication extends Application {
 
         AppRuntime.updateStat(getApplicationContext());
         initYoumi();
+
+        Setting.getInstace().init(getApplicationContext());
     }
 
     private void initYoumi() {

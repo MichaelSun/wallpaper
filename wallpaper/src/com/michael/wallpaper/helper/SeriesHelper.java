@@ -115,7 +115,10 @@ public class SeriesHelper {
 //            list.add(suggest);
 //        }
 
-        Series seriesApp = new Series(-2, "更多应用");
+        Series seriesMore = new Series(-2, "隐藏美女");
+        list.add(seriesMore);
+
+        Series seriesApp = new Series(-3, "更多应用");
         list.add(seriesApp);
 
         return list;
