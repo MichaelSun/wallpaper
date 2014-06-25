@@ -10,6 +10,7 @@
     <string name="action_settings">设置</string>
     <string name="action_feedback">反馈</string>
     <string name="action_refresh">刷新</string>
+    <string name="action_more">更多</string>
 
     <string name="action_save_gallery">保存相册</string>
     <string name="save_gallery_success">成功保存到相册</string>

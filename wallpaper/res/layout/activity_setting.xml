@@ -13,6 +13,7 @@
         android:paddingRight="30dp"
         android:textSize="18sp"
         android:gravity="center_vertical"
+        android:background="@drawable/android_db_actionbar_selectable_bg"
         android:text="@string/setting_clear"/>
 
     <View

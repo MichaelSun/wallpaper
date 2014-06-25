@@ -5,25 +5,33 @@
     <item
         android:id="@+id/action_share"
         android:title="分享"
-        android:showAsAction="always"
+        android:showAsAction="ifRoom"
         android:actionProviderClass="android.widget.ShareActionProvider"/>
 
     <item
-        android:id="@+id/action_save"
-        android:title="@string/action_save_gallery"
-        android:orderInCategory="100"
-        android:showAsAction="never"/>
+        android:id="@+id/detail_action_more"
+        android:title="@string/action_more"
+        android:icon="@drawable/android_db_actionbar_more"
+        android:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/action_save"
+                android:title="@string/action_save_gallery"
+                android:orderInCategory="100"
+                android:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_wallpaper"
-        android:title="@string/action_wallpaper"
-        android:orderInCategory="100"
-        android:showAsAction="never"/>
+            <item
+                android:id="@+id/action_wallpaper"
+                android:title="@string/action_wallpaper"
+                android:orderInCategory="100"
+                android:showAsAction="never"/>
 
-    <item
-        android:id="@+id/action_collect"
-        android:title="@string/action_collect"
-        android:orderInCategory="100"
-        android:showAsAction="never"/>
+            <item
+                android:id="@+id/action_collect"
+                android:title="@string/action_collect"
+                android:orderInCategory="100"
+                android:showAsAction="never"/>
+        </menu>
+    </item>
 
 </menu>

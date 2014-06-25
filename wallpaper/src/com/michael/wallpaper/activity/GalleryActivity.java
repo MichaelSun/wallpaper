@@ -218,8 +218,7 @@ public class GalleryActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getMenuInflater().inflate(R.menu.view_large, menu);
-        ShareActionProvider shareActionProvider = (ShareActionProvider)
-                                                      menu.findItem(R.id.action_share).getActionProvider();
+        ShareActionProvider shareActionProvider = (ShareActionProvider) menu.findItem(R.id.action_share).getActionProvider();
         shareActionProvider.setShareIntent(mShareIntent);
         shareActionProvider.setOnShareTargetSelectedListener(new ShareActionProvider.OnShareTargetSelectedListener() {
             @Override

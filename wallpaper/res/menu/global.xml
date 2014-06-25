@@ -1,12 +1,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"/>
-    <item
-        android:id="@+id/action_feedback"
-        android:title="@string/action_feedback"
-        android:orderInCategory="100"
-        android:showAsAction="never"/>
+        android:id="@+id/detail_action_more"
+        android:title="@string/action_more"
+        android:icon="@drawable/android_db_actionbar_more"
+        android:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/action_settings"
+                android:showAsAction="ifRoom"
+                android:orderInCategory="100"
+                android:title="@string/action_settings">
+            </item>
+
+            <item
+                android:id="@+id/action_feedback"
+                android:title="@string/action_feedback"
+                android:orderInCategory="100"/>
+        </menu>
+    </item>
+
 </menu>
