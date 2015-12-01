@@ -1,0 +1,25 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.jesson.belle.activity.MainActivity">
+
+    <item
+        android:id="@+id/action_refresh"
+        android:title="@string/action_refresh"
+        android:icon="@drawable/actionbar_refresh"
+        android:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/detail_action_more"
+        android:title="@string/action_more"
+        android:icon="@drawable/android_db_actionbar_more"
+        android:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/action_settings"
+                android:showAsAction="ifRoom"
+                android:title="@string/action_settings">
+            </item>
+        </menu>
+    </item>
+
+</menu>

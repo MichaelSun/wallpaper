@@ -1,0 +1,897 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wallpaper" default="all">
+  
+  
+  <property file="wallpaper.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.swc"/>
+    <include name="*.ane"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.android_4.2.2_platform" value="${jdk.home.android_4.2.2_platform}/../../../../../System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bin"/>
+  <path id="jdk.classpath.android_4.2.2_platform">
+    <fileset dir="${jdk.home.android_4.2.2_platform}">
+      <include name="platforms/android-17/android.jar"/>
+      <include name="platforms/android-17/data/res"/>
+      <include name="tools/support/annotations.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.android_4.2.2_platform}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.android_4.2.2_platform}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.android_4.2.2_platform"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.libs1.classpath">
+    <pathelement location="${basedir}/qrcode/src_lib/DaoGenerator/libs/freemarker.jar"/>
+    <pathelement location="${basedir}/qrcode/src_lib/DaoGenerator/libs/greendao-generator-1.3.0.jar"/>
+  </path>
+  
+  
+  <!-- Global Libraries -->
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm4-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module ActionBar-PullToRefresh -->
+  
+  <dirname property="module.actionbar-pulltorefresh.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.actionbar-pulltorefresh" value="${jdk.home.android_4.2.2_platform}"/>
+  <property name="module.jdk.bin.actionbar-pulltorefresh" value="${jdk.bin.android_4.2.2_platform}"/>
+  <property name="module.jdk.classpath.actionbar-pulltorefresh" value="jdk.classpath.android_4.2.2_platform"/>
+  
+  <property name="compiler.args.actionbar-pulltorefresh" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="actionbar-pulltorefresh.output.dir" value="${module.actionbar-pulltorefresh.basedir}/out/production/ActionBar-PullToRefresh"/>
+  <property name="actionbar-pulltorefresh.testoutput.dir" value="${module.actionbar-pulltorefresh.basedir}/out/test/ActionBar-PullToRefresh"/>
+  
+  <path id="actionbar-pulltorefresh.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="actionbar-pulltorefresh.module.production.classpath">
+    <path refid="${module.jdk.classpath.actionbar-pulltorefresh}"/>
+  </path>
+  
+  <path id="actionbar-pulltorefresh.runtime.production.module.classpath">
+    <pathelement location="${actionbar-pulltorefresh.output.dir}"/>
+  </path>
+  
+  <path id="actionbar-pulltorefresh.module.classpath">
+    <path refid="${module.jdk.classpath.actionbar-pulltorefresh}"/>
+    <pathelement location="${actionbar-pulltorefresh.output.dir}"/>
+  </path>
+  
+  <path id="actionbar-pulltorefresh.runtime.module.classpath">
+    <pathelement location="${actionbar-pulltorefresh.testoutput.dir}"/>
+    <pathelement location="${actionbar-pulltorefresh.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.actionbar-pulltorefresh">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.actionbar-pulltorefresh">
+    <patternset refid="excluded.from.module.actionbar-pulltorefresh"/>
+  </patternset>
+  
+  <path id="actionbar-pulltorefresh.module.sourcepath">
+    <dirset dir="${module.actionbar-pulltorefresh.basedir}/wallpaper/src_lib/ActionBar-PullToRefresh">
+      <include name="gen"/>
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.actionbar-pulltorefresh" depends="compile.module.actionbar-pulltorefresh.production,compile.module.actionbar-pulltorefresh.tests" description="Compile module ActionBar-PullToRefresh"/>
+  
+  <target name="compile.module.actionbar-pulltorefresh.production" depends="register.custom.compilers" description="Compile module ActionBar-PullToRefresh; production classes">
+    <mkdir dir="${actionbar-pulltorefresh.output.dir}"/>
+    <javac2 destdir="${actionbar-pulltorefresh.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.actionbar-pulltorefresh}/javac">
+      <compilerarg line="${compiler.args.actionbar-pulltorefresh}"/>
+      <bootclasspath refid="actionbar-pulltorefresh.module.bootclasspath"/>
+      <classpath refid="actionbar-pulltorefresh.module.production.classpath"/>
+      <src refid="actionbar-pulltorefresh.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.actionbar-pulltorefresh"/>
+    </javac2>
+    
+    <copy todir="${actionbar-pulltorefresh.output.dir}">
+      <fileset dir="${module.actionbar-pulltorefresh.basedir}/wallpaper/src_lib/ActionBar-PullToRefresh/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.actionbar-pulltorefresh.basedir}/wallpaper/src_lib/ActionBar-PullToRefresh/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.actionbar-pulltorefresh.tests" depends="register.custom.compilers,compile.module.actionbar-pulltorefresh.production" description="compile module ActionBar-PullToRefresh; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.actionbar-pulltorefresh" description="cleanup module">
+    <delete dir="${actionbar-pulltorefresh.output.dir}"/>
+    <delete dir="${actionbar-pulltorefresh.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module DaoGenerator -->
+  
+  <dirname property="module.daogenerator.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.daogenerator" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.daogenerator" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.daogenerator" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.daogenerator" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="daogenerator.output.dir" value="${module.daogenerator.basedir}/out/production/DaoGenerator"/>
+  <property name="daogenerator.testoutput.dir" value="${module.daogenerator.basedir}/out/test/DaoGenerator"/>
+  
+  <path id="daogenerator.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="daogenerator.module.production.classpath">
+    <path refid="${module.jdk.classpath.daogenerator}"/>
+    <path refid="library.libs1.classpath"/>
+  </path>
+  
+  <path id="daogenerator.runtime.production.module.classpath">
+    <pathelement location="${daogenerator.output.dir}"/>
+    <path refid="library.libs1.classpath"/>
+  </path>
+  
+  <path id="daogenerator.module.classpath">
+    <path refid="${module.jdk.classpath.daogenerator}"/>
+    <pathelement location="${daogenerator.output.dir}"/>
+    <path refid="library.libs1.classpath"/>
+  </path>
+  
+  <path id="daogenerator.runtime.module.classpath">
+    <pathelement location="${daogenerator.testoutput.dir}"/>
+    <pathelement location="${daogenerator.output.dir}"/>
+    <path refid="library.libs1.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.daogenerator">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.daogenerator">
+    <patternset refid="excluded.from.module.daogenerator"/>
+  </patternset>
+  
+  <path id="daogenerator.module.sourcepath">
+    <dirset dir="${module.daogenerator.basedir}/qrcode/src_lib/DaoGenerator">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.daogenerator" depends="compile.module.daogenerator.production,compile.module.daogenerator.tests" description="Compile module DaoGenerator"/>
+  
+  <target name="compile.module.daogenerator.production" depends="register.custom.compilers" description="Compile module DaoGenerator; production classes">
+    <mkdir dir="${daogenerator.output.dir}"/>
+    <javac2 destdir="${daogenerator.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.daogenerator}/javac">
+      <compilerarg line="${compiler.args.daogenerator}"/>
+      <bootclasspath refid="daogenerator.module.bootclasspath"/>
+      <classpath refid="daogenerator.module.production.classpath"/>
+      <src refid="daogenerator.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.daogenerator"/>
+    </javac2>
+    
+    <copy todir="${daogenerator.output.dir}">
+      <fileset dir="${module.daogenerator.basedir}/qrcode/src_lib/DaoGenerator/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.daogenerator.tests" depends="register.custom.compilers,compile.module.daogenerator.production" description="compile module DaoGenerator; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.daogenerator" description="cleanup module">
+    <delete dir="${daogenerator.output.dir}"/>
+    <delete dir="${daogenerator.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module EventBus -->
+  
+  <dirname property="module.eventbus.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.eventbus" value="${jdk.home.android_4.2.2_platform}"/>
+  <property name="module.jdk.bin.eventbus" value="${jdk.bin.android_4.2.2_platform}"/>
+  <property name="module.jdk.classpath.eventbus" value="jdk.classpath.android_4.2.2_platform"/>
+  
+  <property name="compiler.args.eventbus" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="eventbus.output.dir" value="${module.eventbus.basedir}/out/production/EventBus"/>
+  <property name="eventbus.testoutput.dir" value="${module.eventbus.basedir}/out/test/EventBus"/>
+  
+  <path id="eventbus.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="eventbus.module.production.classpath">
+    <path refid="${module.jdk.classpath.eventbus}"/>
+    <pathelement location="${basedir}/wallpaper/src_lib/EventBus/libs/android-support-v4.jar"/>
+  </path>
+  
+  <path id="eventbus.runtime.production.module.classpath">
+    <pathelement location="${eventbus.output.dir}"/>
+  </path>
+  
+  <path id="eventbus.module.classpath">
+    <path refid="${module.jdk.classpath.eventbus}"/>
+    <pathelement location="${eventbus.output.dir}"/>
+    <pathelement location="${basedir}/wallpaper/src_lib/EventBus/libs/android-support-v4.jar"/>
+  </path>
+  
+  <path id="eventbus.runtime.module.classpath">
+    <pathelement location="${eventbus.testoutput.dir}"/>
+    <pathelement location="${eventbus.output.dir}"/>
+    <pathelement location="${basedir}/wallpaper/src_lib/EventBus/libs/android-support-v4.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.eventbus">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.eventbus">
+    <patternset refid="excluded.from.module.eventbus"/>
+  </patternset>
+  
+  <path id="eventbus.module.sourcepath">
+    <dirset dir="${module.eventbus.basedir}/wallpaper/src_lib/EventBus">
+      <include name="gen"/>
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.eventbus" depends="compile.module.eventbus.production,compile.module.eventbus.tests" description="Compile module EventBus"/>
+  
+  <target name="compile.module.eventbus.production" depends="register.custom.compilers" description="Compile module EventBus; production classes">
+    <mkdir dir="${eventbus.output.dir}"/>
+    <javac2 destdir="${eventbus.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.eventbus}/javac">
+      <compilerarg line="${compiler.args.eventbus}"/>
+      <bootclasspath refid="eventbus.module.bootclasspath"/>
+      <classpath refid="eventbus.module.production.classpath"/>
+      <src refid="eventbus.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.eventbus"/>
+    </javac2>
+    
+    <copy todir="${eventbus.output.dir}">
+      <fileset dir="${module.eventbus.basedir}/wallpaper/src_lib/EventBus/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.eventbus.basedir}/wallpaper/src_lib/EventBus/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.eventbus.tests" depends="register.custom.compilers,compile.module.eventbus.production" description="compile module EventBus; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.eventbus" description="cleanup module">
+    <delete dir="${eventbus.output.dir}"/>
+    <delete dir="${eventbus.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module main1 -->
+  
+  <dirname property="module.main1.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.main1" value="${jdk.home.android_4.2.2_platform}"/>
+  <property name="module.jdk.bin.main1" value="${jdk.bin.android_4.2.2_platform}"/>
+  <property name="module.jdk.classpath.main1" value="jdk.classpath.android_4.2.2_platform"/>
+  
+  <property name="compiler.args.main1" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="main1.output.dir" value="${module.main1.basedir}/out/production/main1"/>
+  <property name="main1.testoutput.dir" value="${module.main1.basedir}/out/test/main1"/>
+  
+  <path id="main1.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="main1.module.production.classpath">
+    <path refid="${module.jdk.classpath.main1}"/>
+  </path>
+  
+  <path id="main1.runtime.production.module.classpath">
+    <pathelement location="${main1.output.dir}"/>
+  </path>
+  
+  <path id="main1.module.classpath">
+    <path refid="${module.jdk.classpath.main1}"/>
+    <pathelement location="${main1.output.dir}"/>
+  </path>
+  
+  <path id="main1.runtime.module.classpath">
+    <pathelement location="${main1.testoutput.dir}"/>
+    <pathelement location="${main1.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.main1">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.main1">
+    <patternset refid="excluded.from.module.main1"/>
+  </patternset>
+  
+  <path id="main1.module.sourcepath">
+    <dirset dir="${module.main1.basedir}/wallpaper/src_lib/cardslib/src/main">
+      <include name="gen"/>
+      <include name="java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.main1" depends="compile.module.main1.production,compile.module.main1.tests" description="Compile module main1"/>
+  
+  <target name="compile.module.main1.production" depends="register.custom.compilers" description="Compile module main1; production classes">
+    <mkdir dir="${main1.output.dir}"/>
+    <javac2 destdir="${main1.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.main1}/javac">
+      <compilerarg line="${compiler.args.main1}"/>
+      <bootclasspath refid="main1.module.bootclasspath"/>
+      <classpath refid="main1.module.production.classpath"/>
+      <src refid="main1.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.main1"/>
+    </javac2>
+    
+    <copy todir="${main1.output.dir}">
+      <fileset dir="${module.main1.basedir}/wallpaper/src_lib/cardslib/src/main/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.main1.basedir}/wallpaper/src_lib/cardslib/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.main1.tests" depends="register.custom.compilers,compile.module.main1.production" description="compile module main1; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.main1" description="cleanup module">
+    <delete dir="${main1.output.dir}"/>
+    <delete dir="${main1.testoutput.dir}"/>
+  </target>
+  
+  
+  <!-- Module wallpaper -->
+  
+  <dirname property="module.wallpaper.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.wallpaper" value="${jdk.home.android_4.2.2_platform}"/>
+  <property name="module.jdk.bin.wallpaper" value="${jdk.bin.android_4.2.2_platform}"/>
+  <property name="module.jdk.classpath.wallpaper" value="jdk.classpath.android_4.2.2_platform"/>
+  
+  <property name="compiler.args.wallpaper" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  
+  <property name="wallpaper.output.dir" value="${module.wallpaper.basedir}/out/production/wallpaper"/>
+  <property name="wallpaper.testoutput.dir" value="${module.wallpaper.basedir}/out/test/wallpaper"/>
+  
+  <path id="wallpaper.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="wallpaper.module.production.classpath">
+    <path refid="${module.jdk.classpath.wallpaper}"/>
+    <pathelement location="${actionbar-pulltorefresh.output.dir}"/>
+    <pathelement location="${eventbus.output.dir}"/>
+    <pathelement location="${basedir}/wallpaper/src_lib/EventBus/libs/android-support-v4.jar"/>
+    <pathelement location="${main1.output.dir}"/>
+    <pathelement location="${basedir}/wallpaper/libs/android-support-v4.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/GoogleAdMobAdsSdk-6.4.1.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/greendao-1.3.0-beta-1.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/gson-2.2.4.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/universal-image-loader-1.9.1.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/YoumiSdk_v4.08_2014-06-06.jar"/>
+  </path>
+  
+  <path id="wallpaper.runtime.production.module.classpath">
+    <pathelement location="${wallpaper.output.dir}"/>
+    <path refid="actionbar-pulltorefresh.runtime.production.module.classpath"/>
+    <path refid="eventbus.runtime.production.module.classpath"/>
+    <path refid="main1.runtime.production.module.classpath"/>
+    <pathelement location="${basedir}/wallpaper/libs/android-support-v4.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/GoogleAdMobAdsSdk-6.4.1.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/greendao-1.3.0-beta-1.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/gson-2.2.4.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/universal-image-loader-1.9.1.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/YoumiSdk_v4.08_2014-06-06.jar"/>
+  </path>
+  
+  <path id="wallpaper.module.classpath">
+    <path refid="${module.jdk.classpath.wallpaper}"/>
+    <pathelement location="${wallpaper.output.dir}"/>
+    <pathelement location="${actionbar-pulltorefresh.testoutput.dir}"/>
+    <pathelement location="${actionbar-pulltorefresh.output.dir}"/>
+    <pathelement location="${eventbus.testoutput.dir}"/>
+    <pathelement location="${eventbus.output.dir}"/>
+    <pathelement location="${basedir}/wallpaper/src_lib/EventBus/libs/android-support-v4.jar"/>
+    <pathelement location="${main1.testoutput.dir}"/>
+    <pathelement location="${main1.output.dir}"/>
+    <pathelement location="${basedir}/wallpaper/libs/android-support-v4.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/GoogleAdMobAdsSdk-6.4.1.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/greendao-1.3.0-beta-1.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/gson-2.2.4.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/universal-image-loader-1.9.1.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/YoumiSdk_v4.08_2014-06-06.jar"/>
+  </path>
+  
+  <path id="wallpaper.runtime.module.classpath">
+    <pathelement location="${wallpaper.testoutput.dir}"/>
+    <pathelement location="${wallpaper.output.dir}"/>
+    <path refid="actionbar-pulltorefresh.runtime.module.classpath"/>
+    <path refid="eventbus.runtime.module.classpath"/>
+    <path refid="main1.runtime.module.classpath"/>
+    <pathelement location="${basedir}/wallpaper/libs/android-support-v4.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/GoogleAdMobAdsSdk-6.4.1.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/greendao-1.3.0-beta-1.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/gson-2.2.4.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/universal-image-loader-1.9.1.jar"/>
+    <pathelement location="${basedir}/wallpaper/libs/YoumiSdk_v4.08_2014-06-06.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.wallpaper">
+    <patternset refid="ignored.files"/>
+    <exclude name="src_lib/cardslib/src/main/**"/>
+    <exclude name="src_lib/cardslib/src/main/bin/**"/>
+    <exclude name="src_lib/cardslib/src/main/bin/res/**"/>
+    <exclude name="src_lib/cardslib/src/main/bin/classes/**"/>
+    <exclude name="src_lib/cardslib/src/main/bin/classes/it/**"/>
+    <exclude name="src_lib/cardslib/src/main/bin/classes/it/gmariotti/**"/>
+    <exclude name="src_lib/cardslib/src/main/bin/classes/it/gmariotti/cardslib/**"/>
+    <exclude name="src_lib/cardslib/src/main/bin/classes/it/gmariotti/cardslib/library/**"/>
+    <exclude name="src_lib/cardslib/src/main/gen/**"/>
+    <exclude name="src_lib/cardslib/src/main/gen/it/**"/>
+    <exclude name="src_lib/cardslib/src/main/gen/it/gmariotti/**"/>
+    <exclude name="src_lib/cardslib/src/main/gen/it/gmariotti/cardslib/**"/>
+    <exclude name="src_lib/cardslib/src/main/gen/it/gmariotti/cardslib/library/**"/>
+    <exclude name="src_lib/cardslib/src/main/res/**"/>
+    <exclude name="src_lib/cardslib/src/main/res/layout/**"/>
+    <exclude name="src_lib/cardslib/src/main/res/values/**"/>
+    <exclude name="src_lib/cardslib/src/main/res/drawable/**"/>
+    <exclude name="src_lib/cardslib/src/main/res/values-v16/**"/>
+    <exclude name="src_lib/cardslib/src/main/res/drawable-hdpi/**"/>
+    <exclude name="src_lib/cardslib/src/main/res/drawable-ldpi/**"/>
+    <exclude name="src_lib/cardslib/src/main/res/drawable-mdpi/**"/>
+    <exclude name="src_lib/cardslib/src/main/res/drawable-xhdpi/**"/>
+    <exclude name="src_lib/cardslib/src/main/res/drawable-xxhdpi/**"/>
+    <exclude name="src_lib/cardslib/src/main/src/**"/>
+    <exclude name="src_lib/cardslib/src/main/java/**"/>
+    <exclude name="src_lib/cardslib/src/main/java/it/**"/>
+    <exclude name="src_lib/cardslib/src/main/java/it/gmariotti/**"/>
+    <exclude name="src_lib/cardslib/src/main/java/it/gmariotti/cardslib/**"/>
+    <exclude name="src_lib/cardslib/src/main/java/it/gmariotti/cardslib/library/**"/>
+    <exclude name="src_lib/cardslib/src/main/java/it/gmariotti/cardslib/library/view/**"/>
+    <exclude name="src_lib/cardslib/src/main/java/it/gmariotti/cardslib/library/view/base/**"/>
+    <exclude name="src_lib/cardslib/src/main/java/it/gmariotti/cardslib/library/view/listener/**"/>
+    <exclude name="src_lib/cardslib/src/main/java/it/gmariotti/cardslib/library/view/component/**"/>
+    <exclude name="src_lib/cardslib/src/main/java/it/gmariotti/cardslib/library/utils/**"/>
+    <exclude name="src_lib/cardslib/src/main/java/it/gmariotti/cardslib/library/internal/**"/>
+    <exclude name="src_lib/cardslib/src/main/java/it/gmariotti/cardslib/library/internal/base/**"/>
+    <exclude name="src_lib/cardslib/src/main/assets/**"/>
+    <exclude name="src_lib/EventBus/**"/>
+    <exclude name="src_lib/EventBus/bin/**"/>
+    <exclude name="src_lib/EventBus/bin/classes/**"/>
+    <exclude name="src_lib/EventBus/bin/classes/de/**"/>
+    <exclude name="src_lib/EventBus/bin/classes/de/greenrobot/**"/>
+    <exclude name="src_lib/EventBus/bin/classes/de/greenrobot/event/**"/>
+    <exclude name="src_lib/EventBus/bin/classes/de/greenrobot/event/util/**"/>
+    <exclude name="src_lib/EventBus/gen/**"/>
+    <exclude name="src_lib/EventBus/gen/de/**"/>
+    <exclude name="src_lib/EventBus/gen/de/greenrobot/**"/>
+    <exclude name="src_lib/EventBus/gen/de/greenrobot/event/**"/>
+    <exclude name="src_lib/EventBus/res/**"/>
+    <exclude name="src_lib/EventBus/res/values/**"/>
+    <exclude name="src_lib/EventBus/src/**"/>
+    <exclude name="src_lib/EventBus/src/de/**"/>
+    <exclude name="src_lib/EventBus/src/de/greenrobot/**"/>
+    <exclude name="src_lib/EventBus/src/de/greenrobot/event/**"/>
+    <exclude name="src_lib/EventBus/src/de/greenrobot/event/util/**"/>
+    <exclude name="src_lib/EventBus/libs/**"/>
+    <exclude name="src_lib/EventBus/build/**"/>
+    <exclude name="src_lib/EventBus/build/tmp/**"/>
+    <exclude name="src_lib/EventBus/build/tmp/jar/**"/>
+    <exclude name="src_lib/EventBus/build/tmp/javadoc/**"/>
+    <exclude name="src_lib/EventBus/build/tmp/javadocJar/**"/>
+    <exclude name="src_lib/EventBus/build/tmp/sourcesJar/**"/>
+    <exclude name="src_lib/EventBus/build/docs/**"/>
+    <exclude name="src_lib/EventBus/build/docs/javadoc/**"/>
+    <exclude name="src_lib/EventBus/build/docs/javadoc/de/**"/>
+    <exclude name="src_lib/EventBus/build/docs/javadoc/de/greenrobot/**"/>
+    <exclude name="src_lib/EventBus/build/docs/javadoc/de/greenrobot/event/**"/>
+    <exclude name="src_lib/EventBus/build/docs/javadoc/de/greenrobot/event/util/**"/>
+    <exclude name="src_lib/EventBus/build/docs/javadoc/resources/**"/>
+    <exclude name="src_lib/EventBus/build/libs/**"/>
+    <exclude name="src_lib/EventBus/build/classes/**"/>
+    <exclude name="src_lib/EventBus/build/classes/main/**"/>
+    <exclude name="src_lib/EventBus/build/classes/main/de/**"/>
+    <exclude name="src_lib/EventBus/build/classes/main/de/greenrobot/**"/>
+    <exclude name="src_lib/EventBus/build/classes/main/de/greenrobot/event/**"/>
+    <exclude name="src_lib/EventBus/build/classes/main/de/greenrobot/event/util/**"/>
+    <exclude name="src_lib/EventBus/build/dependency-cache/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/gen/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/gen/uk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/gen/uk/co/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/gen/uk/co/senab/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/gen/uk/co/senab/actionbarpulltorefresh/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/gen/uk/co/senab/actionbarpulltorefresh/library/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/layout/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-ar/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-cs/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-de/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-es/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-fi/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-fr/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-he/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-it/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-iw/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-ja/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-ko/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-lt/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-nl/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-pl/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-pt/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-ro/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-ru/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-sk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-sv/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-zh/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-v14/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/res/values-pt-rBR/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/src/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/src/fr/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/src/fr/castorflex/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/src/fr/castorflex/android/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/src/fr/castorflex/android/smoothprogressbar/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/src/uk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/src/uk/co/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/src/uk/co/senab/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/src/uk/co/senab/actionbarpulltorefresh/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/src/uk/co/senab/actionbarpulltorefresh/library/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/src/uk/co/senab/actionbarpulltorefresh/library/sdk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/src/uk/co/senab/actionbarpulltorefresh/library/listeners/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/src/uk/co/senab/actionbarpulltorefresh/library/viewdelegates/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/rs/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/rs/debug/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/rs/release/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/layout/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-ar/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-cs/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-de/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-es/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-fi/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-fr/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-he/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-it/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-iw/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-ja/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-ko/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-lt/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-nl/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-pl/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-pt/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-ro/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-ru/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-sk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-sv/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-zh/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-v14/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/debug/values-pt-rBR/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/layout/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-ar/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-cs/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-de/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-es/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-fi/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-fr/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-he/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-it/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-iw/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-ja/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-ko/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-lt/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-nl/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-pl/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-pt/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-ro/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-ru/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-sk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-sv/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-zh/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-v14/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/res/all/release/values-pt-rBR/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/tmp/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/tmp/packageDebugJar/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/tmp/packageReleaseJar/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/libs/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/lint/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/r/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/r/debug/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/r/debug/uk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/r/debug/uk/co/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/r/debug/uk/co/senab/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/r/debug/uk/co/senab/actionbarpulltorefresh/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/r/debug/uk/co/senab/actionbarpulltorefresh/library/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/r/release/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/r/release/uk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/r/release/uk/co/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/r/release/uk/co/senab/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/r/release/uk/co/senab/actionbarpulltorefresh/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/r/release/uk/co/senab/actionbarpulltorefresh/library/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/rs/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/rs/debug/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/rs/release/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/aidl/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/aidl/debug/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/aidl/release/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/buildConfig/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/buildConfig/debug/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/buildConfig/debug/uk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/buildConfig/debug/uk/co/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/buildConfig/debug/uk/co/senab/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/buildConfig/debug/uk/co/senab/actionbarpulltorefresh/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/buildConfig/debug/uk/co/senab/actionbarpulltorefresh/library/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/buildConfig/release/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/buildConfig/release/uk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/buildConfig/release/uk/co/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/buildConfig/release/uk/co/senab/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/buildConfig/release/uk/co/senab/actionbarpulltorefresh/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/source/buildConfig/release/uk/co/senab/actionbarpulltorefresh/library/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/layout/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-ar/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-cs/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-de/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-es/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-fi/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-fr/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-he/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-it/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-iw/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-ja/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-ko/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-lt/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-nl/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-pl/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-pt/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-ro/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-ru/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-sk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-sv/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-zh/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-v14/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/res/values-pt-rBR/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/debug/assets/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/layout/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-ar/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-cs/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-de/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-es/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-fi/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-fr/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-he/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-it/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-iw/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-ja/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-ko/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-lt/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-nl/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-pl/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-pt/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-ro/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-ru/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-sk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-sv/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-zh/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-v14/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/res/values-pt-rBR/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/bundles/release/assets/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/debug/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/debug/fr/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/debug/fr/castorflex/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/debug/fr/castorflex/android/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/debug/fr/castorflex/android/smoothprogressbar/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/debug/uk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/debug/uk/co/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/debug/uk/co/senab/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/debug/uk/co/senab/actionbarpulltorefresh/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/debug/uk/co/senab/actionbarpulltorefresh/library/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/debug/uk/co/senab/actionbarpulltorefresh/library/sdk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/debug/uk/co/senab/actionbarpulltorefresh/library/listeners/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/debug/uk/co/senab/actionbarpulltorefresh/library/viewdelegates/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/release/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/release/fr/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/release/fr/castorflex/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/release/fr/castorflex/android/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/release/fr/castorflex/android/smoothprogressbar/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/release/uk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/release/uk/co/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/release/uk/co/senab/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/release/uk/co/senab/actionbarpulltorefresh/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/release/uk/co/senab/actionbarpulltorefresh/library/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/release/uk/co/senab/actionbarpulltorefresh/library/sdk/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/release/uk/co/senab/actionbarpulltorefresh/library/listeners/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/classes/release/uk/co/senab/actionbarpulltorefresh/library/viewdelegates/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/incremental/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/incremental/aidl/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/incremental/aidl/debug/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/incremental/aidl/release/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/incremental/mergeAssets/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/incremental/mergeAssets/debug/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/incremental/mergeAssets/release/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/incremental/mergeResources/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/incremental/mergeResources/debug/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/incremental/mergeResources/release/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/incremental/packageResources/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/incremental/packageResources/debug/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/incremental/packageResources/release/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/dependency-cache/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/dependency-cache/debug/**"/>
+    <exclude name="src_lib/ActionBar-PullToRefresh/build/dependency-cache/release/**"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.wallpaper">
+    <patternset refid="excluded.from.module.wallpaper"/>
+  </patternset>
+  
+  <path id="wallpaper.module.sourcepath">
+    <dirset dir="${module.wallpaper.basedir}">
+      <include name="wallpaper/gen"/>
+      <include name="wallpaper/src"/>
+      <include name="wallpaper"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.wallpaper" depends="compile.module.wallpaper.production,compile.module.wallpaper.tests" description="Compile module wallpaper"/>
+  
+  <target name="compile.module.wallpaper.production" depends="register.custom.compilers,compile.module.actionbar-pulltorefresh,compile.module.eventbus,compile.module.main1" description="Compile module wallpaper; production classes">
+    <mkdir dir="${wallpaper.output.dir}"/>
+    <javac2 destdir="${wallpaper.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.wallpaper}/javac">
+      <compilerarg line="${compiler.args.wallpaper}"/>
+      <bootclasspath refid="wallpaper.module.bootclasspath"/>
+      <classpath refid="wallpaper.module.production.classpath"/>
+      <src refid="wallpaper.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.wallpaper"/>
+    </javac2>
+    
+    <copy todir="${wallpaper.output.dir}">
+      <fileset dir="${module.wallpaper.basedir}/wallpaper/gen">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.wallpaper.basedir}/wallpaper/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.wallpaper.basedir}/wallpaper">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.wallpaper.tests" depends="register.custom.compilers,compile.module.wallpaper.production" description="compile module wallpaper; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.wallpaper" description="cleanup module">
+    <delete dir="${wallpaper.output.dir}"/>
+    <delete dir="${wallpaper.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.actionbar-pulltorefresh, clean.module.daogenerator, clean.module.eventbus, clean.module.main1, clean.module.wallpaper" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.actionbar-pulltorefresh, compile.module.daogenerator, compile.module.eventbus, compile.module.main1, compile.module.wallpaper" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>
